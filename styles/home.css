@@ -1,0 +1,97 @@
+/* HOMEPAGE */
+/******* mobile first *******/
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem; /* luft i siderne for hele indholdet */
+}
+/* intro section > image + p */
+#intro {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+#intro img {
+  /* fills the available width of the grid cell */
+  width: 100%;
+  height: auto;
+  /* remove inline gap under img */
+  display: block;
+  /* soft corners */
+  border-radius: 0.5rem;
+}
+
+#intro p {
+  line-height: 1.55;
+  /* when making the size with clamp, the font size will scale slighty if the screen is bigger */
+  font-size: clamp(1rem, 0.95rem + 0.4vw, 1.1rem);
+  color: black;
+}
+
+/* short p after intro */
+main p {
+  margin: 0.5rem 0 0.25rem;
+  line-height: 1.5;
+}
+
+/* the list */
+#highlights ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1rem;
+
+  li {
+    margin: 0.35rem;
+    font-weight: 600;
+    color: var(--colourButton);
+  }
+}
+
+/* testimonial */
+#testimonial {
+  margin: 1rem 0 1rem;
+  blockquote {
+    background-color: lightgray;
+    padding: 1rem 1.25rem;
+    border-radius: 0.5rem;
+    /* small indent at the signature line */
+    p {
+      text-indent: 1rem;
+      span {
+        font-style: italic;
+      }
+    }
+  }
+}
+
+/******* desktop *******/
+@media (min-width: 1024px) {
+  #intro {
+    /* 2 columns: text a bit wider than image */
+    grid-template-columns: 1.2fr 1fr;
+    /* explicitly create two rows (content height) */
+    grid-auto-rows: auto;
+    gap: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  img {
+    grid-column: 2;
+    grid-row: 1 / span 2; /* cover the height of paragraph + highlights */
+    align-self: start;
+  }
+  p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+#intro #testimonial {
+  grid-column: 1;
+  grid-row: 2;
+  margin-top: 0;
+}

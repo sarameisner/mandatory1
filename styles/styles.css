@@ -1,0 +1,135 @@
+/* my global styling */
+@import "./variables.css";
+@import "./home.css";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/******* mobile first *******/
+body {
+  font-family: var(--fontMain);
+  /* my header contains two children > to make them stacked vertically on mobile, I make the header a container with column direction */
+  & > header {
+    /* no padding here so the nav bar can span edge to edge */
+    padding: 0;
+    /* here I'm centering the h1 */
+    text-align: center;
+    background-color: var(--colourBgComplementary);
+    display: flex;
+    /* h1 above nav */
+    flex-direction: column;
+    /* is this even necessary? stretching h1 and the nav to the full width of the header*/
+    align-items: stretch;
+  }
+
+  & > footer {
+    padding: 0.5rem 1rem;
+    text-align: center;
+    background-color: var(--colourBgNav);
+  }
+
+  h1 {
+    /* removing the browser default margins .. - haven't I already did that in the top of the stylesheet with the * ? */
+    margin: 0;
+    padding: 0.75rem 1rem 0.25rem;
+    font-family: var(--fontTitle);
+    color: var(--colourAccent);
+  }
+
+  nav {
+    width: 100%;
+    padding: 0;
+    background-color: var(--colourBgNav);
+
+    ul {
+      list-style: none;
+      /* this is how I center the links */
+      margin: 0 auto;
+      /* I'm controlling the underlines length here */
+      max-width: 28rem;
+      padding: 0.25rem 0 0.5rem;
+      display: flex;
+      /* stacks links vertically */
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0.25rem;
+    }
+    /* but this is where I make the blue underline  */
+    li {
+      width: 100%;
+      border-bottom: 2px solid var(--colourAccent);
+    }
+
+    /* removing it under contact / the last link in the nav */
+    li:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      display: block;
+      padding: 0.5rem 0.25rem;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      color: var(--colourAccent);
+    }
+
+    a:hover,
+    a.is-active {
+      color: var(--colourButton);
+    }
+  }
+}
+
+/******* desktop *******/
+@media (min-width: 1024px) {
+  /* stack header: titel øverst, nav-bjælke under */
+  body > header {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* så nav kan fylde hele bredden */
+    padding: 0; /* ingen side-padding på selv headeren - why ?*/
+    background: var(--colourBgComplementary);
+  }
+
+  body > header h1 {
+    text-align: left;
+    padding: 0.75rem 1.25rem;
+  }
+
+  /* making sure the nav bar fills the entire header width */
+  body > header > nav {
+    width: 100%;
+    background: var(--colourBgNav);
+    padding: 0; /* no extra inner padding */
+  }
+
+  /* display links in one row, aligned left, with spacing */
+  body > header > nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.25rem;
+    list-style: none;
+    margin: 0;
+    padding: 0.75rem 1.25rem; /* matching the h1 for alignment */
+  }
+
+  /* removing the lines under my nav links */
+  body > header > nav li {
+    width: auto;
+    border-bottom: none;
+  }
+
+  body > header > nav a {
+    display: block;
+    padding: 0.35rem 0.25rem;
+    font-weight: 600;
+    color: var(--colourAccent);
+    text-decoration: none;
+  }
+}
