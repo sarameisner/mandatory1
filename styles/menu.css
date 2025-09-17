@@ -1,0 +1,89 @@
+/* MENU */
+/******* mobile first *******/
+#menu {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+/* 
+ - here I'm stacking the image, title and the text 
+ - 1 column inside the card on mobile
+ - and with some small gaps between elements
+ */
+
+.dish {
+  background-color: var(--colourBgComplementary);
+  border-radius: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  padding: 1rem;
+  gap: 0.5rem;
+
+  img {
+    /* filling the card width */
+    width: 100%;
+    height: auto;
+    display: block;
+    /* and again rounded corners on image like on the homepage <3 */
+    border-radius: 0.5rem;
+  }
+
+  h3 {
+    font-family: var(--fontTitle);
+    color: var(--colourAccent);
+    font-size: 1.3rem;
+    margin: 0.25rem 0 0;
+    text-align: center;
+  }
+
+  p {
+    line-height: 1.55;
+  }
+
+  .price {
+    display: inline-block;
+    justify-self: start;
+    background-color: var(--colourButton);
+    border: 4px solid var(--colourBgNav);
+    color: var(--colourBgMain);
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.4rem;
+  }
+}
+
+/******* tablet *******/
+@media (min-width: 768px) {
+  .dish {
+    /* to kolonner: tekst ~60%, billede ~40% */
+    grid-template-columns: 1.5fr 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .dish img {
+    grid-column: 2; /* billede i højre kolonne */
+    grid-row: 1 / span 3; /* stræk så det følger hele højden */
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  .dish h3 {
+    text-align: left; /* venstrejuster overskriften */
+    margin-top: 0.25rem;
+  }
+
+  .dish p {
+    line-height: 1.4; /* mindre luft mellem linjerne */
+    margin-bottom: 0.75rem; /* lidt luft under hele teksten */
+  }
+
+  .dish .price {
+    grid-column: 1; /* prisen står under teksten i venstre kolonne */
+    justify-self: start;
+  }
+}
